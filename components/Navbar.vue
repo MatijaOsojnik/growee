@@ -1,8 +1,10 @@
 <template>
+<v-container fluid style="background-color: #617be3;"> 
+
   <v-container>
     <v-toolbar dense light color="transparent" elevation="0">
       <v-toolbar-title style="font-weight:900; font-size:30px;">
-        <nuxt-link to="/" style="text-decoration: none; color: #1b262c;">Growee</nuxt-link>
+        <nuxt-link to="/" style="text-decoration: none; color: white;">Growee</nuxt-link>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -11,7 +13,7 @@
         <v-row>
           <v-col>
             <v-list-item>
-              <v-btn text nuxt :to="link.url">
+              <v-btn text nuxt :to="link.url" class="white--text">
                {{link.name}}
               </v-btn>
             </v-list-item>
@@ -20,7 +22,7 @@
       </v-list>
 
 
-      <v-menu bottom left class="hidden-sm-and-down">
+      <v-menu bottom left class="hidden-sm-and-down" style="z-index: 2">
         <template v-slot:activator="{ on }" class="hidden-sm-and-down">
               <v-btn
                 icon
@@ -32,7 +34,7 @@
               </v-btn>
             </template>
        <v-list v-for="(link, index) in links" :key="index" >
-        <v-row>
+        <v-row style="color: black">
           <v-col>
             <v-list-item>
               <v-btn text nuxt :to="link.url">
@@ -45,9 +47,10 @@
       </v-menu>
 
       <v-spacer class="hidden-sm-and-down"/>
-      <v-btn color="#6c63ff" class="white--text hidden-sm-and-down" rounded>GET STARTED</v-btn>
+      <v-btn to="/register" color="transparent" class="white--text hidden-sm-and-down">GET STARTED</v-btn>
     </v-toolbar>
   </v-container>
+</v-container>
 </template>
 
 <script>

@@ -52,7 +52,7 @@
                   ></v-text-field>
 
                   <v-text-field
-                    v-model="form.confirmPasword"
+                    v-model="form.confirmPassword"
                     :rules="[passwordRules.confirm]"
                     label="Confirm Password"
                     type="password"
@@ -60,9 +60,15 @@
                   ></v-text-field>
 
                   <v-card-actions>
-                    <v-btn :to="{name: 'login'}">Login</v-btn>
+                    <v-btn :to="{ name: 'login' }">Login</v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn :disabled="!formIsValid" text color="primary" type="submit">Register</v-btn>
+                    <v-btn
+                      :disabled="!formIsValid()"
+                      @click="submit"
+                      text
+                      color="primary"
+                      type="submit"
+                    >Register</v-btn>
                   </v-card-actions>
 
                   <v-checkbox v-model="form.terms" color="green">
@@ -83,7 +89,11 @@
                 <v-dialog v-model="terms" width="70%">
                   <v-card>
                     <v-card-title class="title">Terms</v-card-title>
-                    <v-card-text v-for="n in 5" :key="n">{{ content }}</v-card-text>
+                    <v-card-text v-for="n in 5" :key="n">
+                      {{
+                      content
+                      }}
+                    </v-card-text>
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn text color="purple" @click="terms = false">Ok</v-btn>
@@ -93,7 +103,11 @@
                 <v-dialog v-model="conditions" width="70%">
                   <v-card>
                     <v-card-title class="title">Conditions</v-card-title>
-                    <v-card-text v-for="n in 5" :key="n">{{ content }}</v-card-text>
+                    <v-card-text v-for="n in 5" :key="n">
+                      {{
+                      content
+                      }}
+                    </v-card-text>
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn text color="purple" @click="conditions = false">Ok</v-btn>
@@ -134,7 +148,7 @@ export default {
     const defaultForm = Object.freeze({
       firstName: "",
       lastName: "",
-      CompanyUrl: "",
+      companyUrl: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -160,26 +174,17 @@ export default {
     };
   },
 
-  computed: {
-    
-    
-  },
+  computed: {},
   methods: {
     formIsValid() {
-      return (
-        this.form.firstName &&
-        this.form.companyUrl &&
-        this.form.email &&
-        this.form.password &&
-        this.form.confirmPassword &&
-        this.form.terms
-      );
+      let { form } = this;
+      return Object.values(form).every(item => !!item);
     },
     resetForm() {
       this.form = Object.assign({}, this.defaultForm);
-      this.$refs.form.reset();
     },
     submit() {
+      if (!this.$refs.form.validate()) return;
       this.snackbar = true;
       this.resetForm();
     }

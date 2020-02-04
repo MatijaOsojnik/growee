@@ -22,24 +22,37 @@
       </v-list>
 
 
-      <v-menu bottom left class="hidden-sm-and-down" style="z-index: 2">
+      <v-menu bottom left class="hidden-sm-and-down">
         <template v-slot:activator="{ on }" class="hidden-sm-and-down">
               <v-btn
+              dark
                 icon
                 v-on="on"
                 class="hidden-md-and-up"
                 align="right"
+                
               >
                 <v-icon>mdi-menu</v-icon>
               </v-btn>
             </template>
-       <v-list v-for="(link, index) in links" :key="index" >
-        <v-row style="color: black">
+       <v-list v-for="(link, index) in links" :key="index" light >
+        <v-row>
           <v-col>
-            <v-list-item>
-              <v-btn text nuxt :to="link.url">
+            <v-list-item >
+              <v-btn text :to="link.url">
                {{link.name}}
               </v-btn>
+            </v-list-item>
+          </v-col>
+          
+        </v-row>
+      </v-list>
+      <v-list>
+        <v-row>
+          <v-col>
+            <v-list-item>
+
+                <v-btn text to="/register">GET STARTED</v-btn>
             </v-list-item>
           </v-col>
         </v-row>

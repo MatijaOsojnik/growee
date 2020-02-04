@@ -25,7 +25,7 @@
               <v-flex>
                 <h2 class="heading">
                   Best
-                  <span class="heading" style="color:#6C63FF">Market Analytics</span> AI Ever.
+                  <span class="heading" style="color:#4f81c7">Market Analytics</span> AI Ever.
                 </h2>
                 <h5
                   class="subheading"
@@ -42,7 +42,7 @@
                       />
                     </v-col>
                     <v-col class="text-sm-left text-md-left" md="5">
-                      <v-btn height="55px" color="#6c63ff" class="white--text" to="/pricing">
+                      <v-btn height="55px" color="#4f81c7" class="white--text" to="/pricing">
                         <span style="font-size: 15px; padding-right: 5px;">Analyze Market</span>
                       </v-btn>
                     </v-col>
@@ -67,14 +67,24 @@
     </v-container>
 
     <!-- BODY -->
-
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320"
+      style="transform: rotate(90deg);position:absolute;margin-left:100vw;"
+    >
+      <path
+        fill="#575A89"
+        fill-opacity="0.3"
+        d="M0,224L80,213.3C160,203,320,181,480,160C640,139,800,117,960,122.7C1120,128,1280,160,1360,176L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+      />
+    </svg>
     <!-- FEATURES -->
-    <v-container>
-      <v-container fluid>
+    <v-container fluid>
+      <v-container>
         <v-layout row justify>
           <v-flex class="row">
-            <v-row v-for="(feature, index) in features" :key="index">
-              <CardFeature :img="feature.img" :title="feature.title" :text="feature.text"></CardFeature>
+            <v-row v-for="(item, index) in features" :key="index">
+              <CardFeature :img="item.img" :title="item.title" :text="item.text"></CardFeature>
             </v-row>
           </v-flex>
         </v-layout>
@@ -82,50 +92,51 @@
     </v-container>
 
     <!-- FUNCTIONS -->
-    <v-container>
-      <v-container fluid>
+    <v-container fluid>
+      <v-container>
         <h1
           class="display-1"
           align="center"
           style="font-weight:700;padding:0;margin:0 13px 10rem 0;"
         >The Platform You Need</h1>
-        <v-layout row justify>
+        <v-layout row justify class="mx-12">
           <v-flex class="row">
-            <v-row>
-              <v-col md="6" lg="6" sm="12" cols="12">
-                <img src="~/assets/datapoints.svg" width="80%" alt />
-              </v-col>
-              <v-col md="6" lg="6" sm="12" cols="12">
-                <v-layout column justify-center align-center>
-                  <v-flex>
-                    <div class="how-div">
+            <v-row v-for="(item, index) in functions" :key="index">
 
-                    <h1 class="display-1">
-                      Market Research
-                    </h1>
-                    <h5
-                      class="subheading"
-                      
-                    >Let us get your business ahead of your competition in no-time with the help of marketing automation.</h5>
-                    </div>
-                  </v-flex>
-                </v-layout>
-              </v-col>
+              <FunctionComponent class="hidden-sm-and-down" v-if="index%2===0" :img="item.img" :title="item.title" :text="item.text"></FunctionComponent>
+              <ReverseFunctionComponent class="hidden-sm-and-down" v-if="index%2===1" :img="item.img" :title="item.title" :text="item.text"></ReverseFunctionComponent>
+              <ReverseFunctionComponent class="hidden-md-and-up" :img="item.img" :title="item.title" :text="item.text"></ReverseFunctionComponent>
+              
             </v-row>
           </v-flex>
         </v-layout>
       </v-container>
     </v-container>
+
+
+    <!-- FOOTER -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" style="width:100%;height:14rem;display:block;margin-top: -2rem"><path fill="#617be3" fill-opacity="1" d="M0,256L48,250.7C96,245,192,235,288,213.3C384,192,480,160,576,165.3C672,171,768,213,864,208C960,203,1056,149,1152,144C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>    
+<Footer></Footer>
+
   </v-app>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
 import CardFeature from "@/components/CardFeature.vue";
+import Footer from "@/components/Footer.vue";
+import FunctionComponent from "@/components/FunctionComponent.vue";
+import ReverseFunctionComponent from "@/components/ReverseFunctionComponent.vue";
+import {showAt, hideAt} from 'vue-breakpoints';
 export default {
   components: {
     Navbar,
-    CardFeature
+    CardFeature,
+    FunctionComponent,
+    ReverseFunctionComponent,
+    hideAt,
+    showAt,
+    Footer
   },
   data: () => ({
     lazy: true,
@@ -147,6 +158,26 @@ export default {
         title: "Website Design",
         text:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem sed risus ultricies tristique nulla aliquet enim."
+      }
+    ],
+    functions: [
+      {
+        img: "datapoints.svg",
+        title: "Market Research",
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem sed risus ultricies tristique nulla aliquet enim. "
+      },
+            {
+        img: "uptodate.svg",
+        title: "SEO Service",
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem sed risus ultricies tristique nulla aliquet enim. "
+      },
+            {
+        img: "dashboard.svg",
+        title: "Beautiful Dashboard",
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem sed risus ultricies tristique nulla aliquet enim. "
       }
     ]
   }),
@@ -178,9 +209,13 @@ h3 {
   font-size: 19px;
   font-weight: 700;
   color: #6c7b95;
+  letter-spacing: 0.7px;
 }
-.how-div{
-  margin: 0 auto;
-  width: 80%;
+.description {
+  margin-top: 4rem;
+  font-size: 19px;
+  color: #2d334a;
+  letter-spacing: 1.3px;
+  font-weight: 500;
 }
 </style>

@@ -3,8 +3,8 @@
 
   <v-card width="400px" class="mx-auto my-12" flat color="transparent">
     <img  :src="img" height="90px" />
-    <h3 :title="title" class="align-md-center headline" style="margin:1rem 0 0;">{{title}}</h3>
-    <v-card-text :text="text">{{text}}</v-card-text>
+    <h3 :title="title" class="align-md-center headline" style="margin:1rem 0 0;letter-spacing: 1px;">{{title}}</h3>
+    <v-card-text :text="text" style="letter-spacing: 0.9px;">{{text}}</v-card-text>
   </v-card>
     </v-col>
 </template>
